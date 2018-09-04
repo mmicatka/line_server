@@ -30,16 +30,24 @@ The system performance was tested using Locust (locust.io) in order to simulate
 1000s of users at a single time.
 
 ### File Size
-The system performs well with several different sized
+The system performs well with several different sized files. There is limited
+performance degradation with larger files while enough memory is available.
+The system handles files larger than what fit into memory as well.
 
 ### User Count
+The system will handle up to 1000s of simultaneous users before hitting a
+relatively hard wall. This can be updated in the future to create graceful
+degradation rather than the system being overloaded and failing requests.
 
 
 ## Documentation and Libraries Used
 The main libraries and corresponding documentation used were:
 Flask - web Server
+
 Pytest - testing
+
 MMap - supports memory-mapped files
+
 LRU-dict - a LRU cache library implemented in C
 
 
@@ -66,3 +74,8 @@ with multiple copies of the data between them.
 
 
 ## Code critiques
+The code I wrote is relatively clean but due to the Flask web-server that was
+chosen the code has difficulty being modularized much more that it currently is.
+If this was a larger project a different approach could be taken that would
+allow more modular code to make extending and improving different components
+much easier in the future.
